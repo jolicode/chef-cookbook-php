@@ -33,6 +33,7 @@ There are no cookbooks dependency
 # Attributes
 
 Name | Description
+--- | --- | ---
 ['jolicode-php']['dotdeb'] | Set to true if you use dotdeb
 ['jolicode-php']['conf_dir'] | Directory where php.ini file is on system
 ['jolicode-php']['ext_conf_dir'] | Extension directory used in php configuration
