@@ -24,7 +24,4 @@ template "#{node['jolicode-php']['real_conf_dir']}/xdebug.ini" do
   owner "root"
   group "root"
   mode "0644"
-  variables({
-    :config => node['jolicode-php']['config']['xdebug']
-  })
 end
