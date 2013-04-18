@@ -1,3 +1,4 @@
+name             "jolicode-php"
 maintainer       "JoliCode"
 maintainer_email "jwurtz@jolicode.com"
 license          "Apache 2.0"
