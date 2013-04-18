@@ -23,21 +23,23 @@ pkgs.each do |pkg|
   end
 end
 
-if platform?("centos", "redhat", "scientific", "fedora") and node[:platform_version].to_f < 6.0 and !File.exists?("#{node['jolicode-php']['ext_conf_dir']}/apc.ini")
-  bash "Compile apc package" do
-    cwd "/tmp"
-    code <<-EOH
-    wget http://pecl.php.net/get/APC-#{node['jolicode-php']['apc']['version']}.tgz
-    tar xvzf APC-#{node['jolicode-php']['apc']['version']}.tgz 
-    cd APC-#{node['jolicode-php']['apc']['version']}
-    phpize
-    ./configure
-    make
-    make install
-    cd ..
-    rm -rf APC-#{node['jolicode-php']['apc']['version']}
-    rm APC-#{node['jolicode-php']['apc']['version']}.tgz
-    EOH
+bash "Compile apc package" do
+  cwd "/tmp"
+  code <<-EOH
+  wget http://pecl.php.net/get/APC-#{node['jolicode-php']['apc']['version']}.tgz
+  tar xvzf APC-#{node['jolicode-php']['apc']['version']}.tgz
+  cd APC-#{node['jolicode-php']['apc']['version']}
+  phpize
+  ./configure
+  make
+  make install
+  cd ..
+  rm -rf APC-#{node['jolicode-php']['apc']['version']}
+  rm APC-#{node['jolicode-php']['apc']['version']}.tgz
+  EOH
+
+  only_if do
+    platform?("centos", "redhat", "scientific", "fedora") and node['platform_version'].to_f < 6.0 and !File.exists?("#{node['jolicode-php']['ext_conf_dir']}/apc.ini")
   end
 end
 
