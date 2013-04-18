@@ -1,7 +1,7 @@
 include_attribute "jolicode-php"
 
 case node["platform_family"]
-when "rhel", "centos"
+when "redhat", "centos", "fedora", "scientific"
   default['jolicode-php']['fpm_dir']       = "/etc/php-fpm.d"
   default['jolicode-php']['fpm_pool_dir']  = "/etc/php-fpm.d/pool.d"
 when "debian", "ubuntu"
@@ -11,7 +11,7 @@ else
   default['jolicode-php']['fpm_dir']       = "/etc/php5/fpm"
   default['jolicode-php']['fpm_pool_dir']  = "/etc/php5/fpm/pool.d"
 end
-  
+
 #Php ini attributes
 default['jolicode-php']['fpm']['config']['pool_dir'] = node['jolicode-php']['fpm_pool_dir']
 default['jolicode-php']['fpm']['php-config']['date.timezone']       = "Europe/Paris"
