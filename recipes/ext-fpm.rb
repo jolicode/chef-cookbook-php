@@ -50,6 +50,6 @@ template "#{node['jolicode-php']['fpm_dir']}/php.ini" do
 end
 
 # default pool
-php_fpm_pool "www" do
-  action :run
+jolicode_php_fpm_pool "www" do
+  action :create
 end
