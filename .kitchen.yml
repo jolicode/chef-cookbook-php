@@ -14,5 +14,20 @@ platforms:
 suites:
 - name: default
   run_list:
-    - recipe[jolicode-php]
+    - recipe[jolicode-php::default]
+    - recipe[jolicode-php::composer]
+    - recipe[jolicode-php::ext-apc]
+    - recipe[jolicode-php::ext-curl]
+    - recipe[jolicode-php::ext-dom]
+    - recipe[jolicode-php::ext-fpm]
+    - recipe[jolicode-php::ext-gd]
+    - recipe[jolicode-php::ext-imagick]
+    - recipe[jolicode-php::ext-intl]
+    - recipe[jolicode-php::ext-mbstring]
+    - recipe[jolicode-php::ext-mcrypt]
+    - recipe[jolicode-php::ext-mysql]
+    - recipe[jolicode-php::ext-pdo]
+    - recipe[jolicode-php::ext-posix]
+    - recipe[jolicode-php::ext-twig]
+    - recipe[jolicode-php::ext-xdebug]
     - recipe[minitest-handler]
