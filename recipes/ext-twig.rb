@@ -19,7 +19,7 @@ pkgs.each do |pkg|
   end
 end
 
-jolicode_chef_cookbook_php_composer "create twig project" do
+jolicode_php_composer "create twig project" do
   action      :create_project
   cwd         node['jolicode-php']['twig']['source_dir']
   directory   "twig"
