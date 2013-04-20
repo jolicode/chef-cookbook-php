@@ -1,7 +1,7 @@
 ---
 driver_plugin: vagrant
 platforms:
-- name: ubuntu-12.04
+- name: ubuntu-12.04-chef11
   driver_config:
     box: opscode-ubuntu-12.04
     box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box
@@ -11,6 +11,23 @@ platforms:
       memory: 1024
   run_list:
   - recipe[apt]
+- name: ubuntu-12.04-chef10
+  driver_config:
+    box: opscode-ubuntu-12.04-chef10
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-10.18.2.box
+    customize:
+      cpus: 2
+      memory: 1024
+  run_list:
+  - recipe[apt]
+- name: centos-6.3-chef11
+  driver_config:
+    box: opscode-centos-6.3
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.3_chef-11.2.0.box
+    require_chef_omnibus: 11.4.0
+    customize:
+      cpus: 2
+      memory: 1024
 suites:
 - name: default
   run_list:
