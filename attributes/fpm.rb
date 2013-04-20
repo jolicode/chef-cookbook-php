@@ -1,10 +1,10 @@
 include_attribute "jolicode-php"
 
 case node["platform_family"]
-when "redhat", "centos", "fedora", "scientific"
+when "rhel", "fedora"
   default['jolicode-php']['fpm_dir']       = "/etc/php-fpm.d"
-  default['jolicode-php']['fpm_pool_dir']  = "/etc/php-fpm.d/pool.d"
-when "debian", "ubuntu"
+  default['jolicode-php']['fpm_pool_dir']  = "/etc/php-fpm.d"
+when "debian"
   default['jolicode-php']['fpm_dir']       = "/etc/php5/fpm"
   default['jolicode-php']['fpm_pool_dir']  = "/etc/php5/fpm/pool.d"
 else
