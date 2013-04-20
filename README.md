@@ -33,14 +33,14 @@ There are no cookbooks dependency
 # Attributes
 
 Name | Description
---- | --- 
+--- | ---
 ['jolicode-php']['dotdeb'] | Set to true if you use dotdeb
 ['jolicode-php']['conf_dir'] | Directory where php.ini file is on system
 ['jolicode-php']['ext_conf_dir'] | Extension directory used in php configuration
 ['jolicode-php']['real_conf_dir'] | Real extension directory for extension configuration file (useful with dotdeb where config file in 'ext_conf_dir' are link to 'real_conf_dir' files)
 ['jolicode-php']['config'] | All attributes for php.ini configuration files
 
-# Ressources
+# Resources
 
 ## Composer
 
@@ -69,6 +69,37 @@ end
 
 This will run `composer install --dev` in `/path/to/my/project` directory
 
+
+## Php-fpm
+
+
+### Actions
+
+* remove
+
+### Attributes
+
+* user : The use to run the workers under (defaults to "www-data")
+* group : The group to run the workers under (defaults to "www-data")
+* listen : The IP:port binding or the socket to set up for this pool (defaults to "/var/run/php5-fpm-{application_name}.sock")
+* max_children (defaults to 5)
+* start_servers (defaults to 2)
+* min_spare_servers (defaults to 1)
+* max_spare_servers (defaults to 3)
+
+### Examples
+
+```ruby
+jolicode_php_fpm_pool "my_application"
+  action :create
+end
+
+```
+
+The above will create a new php-fpm pool configuration file under `/etc/php5/fpm/pool.d/my_application.ini`,
+and sets it up to listen on the socket under `/var/run/php5-fpm-my_application.sock`.
+
+
 # Dotdeb
 
-All recipes are compatible with dotdeb repository. You need to set jolicode-php['dotdeb'] attribute to true when using dotdeb. 
+All recipes are compatible with dotdeb repository. You need to set jolicode-php['dotdeb'] attribute to true when using dotdeb.
