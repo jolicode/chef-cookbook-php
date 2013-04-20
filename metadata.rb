@@ -27,3 +27,5 @@ recipe           "jolicode-php::ext-zmq", "PHP Zmq extension"
 %w{ debian ubuntu centos fedora redhat scientific }.each do |os|
   supports os
 end
+
+depends "yum"
