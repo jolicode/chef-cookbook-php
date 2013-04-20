@@ -6,20 +6,13 @@ if !node['jolicode-php']['dotdeb'] and platform?("debian")
   raise "In order to install php5-fpm on debian you need dotdeb"
 end
 
-fpm_package_name = value_for_platform(
-  %w(centos redhat scientific fedora) => {
-    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => "php53-fpm",
-    'default' => "php-fpm"
-  },
-  [ "debian", "ubuntu" ] => {
-    "default" => "php5-fpm"
-  },
-  "default" => "php5-fpm"
-)
+fpm_package_name = case node["platform_family"]
+                   when "rhel", "fedora" then 'php-fpm'
+                   when "debian" then 'php5-fpm'
+                   else 'php5-fpm' # untested, so might be wrong
+                   end
 
-package fpm_package_name do
-  action :install
-end
+package fpm_package_name
 
 # This way we can refer to this service irrespective of the platform
 service "php-fpm" do

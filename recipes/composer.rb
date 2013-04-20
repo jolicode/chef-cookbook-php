@@ -2,11 +2,9 @@ include_recipe "jolicode-php::php"
 
 package "curl"
 
-case node['platform']
-when "debian", "ubuntu"
+case node['platform_family']
+when "debian"
   package "git-core"
-when "centos","redhat","scientific","fedora"
-  package "git"
 else
   package "git"
 end
