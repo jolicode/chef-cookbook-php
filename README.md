@@ -4,11 +4,19 @@ Install and configure php, instead of the offcial one, this cookbook does not de
 
 # Platform
 
-This cookbook intend to work on these platform : Debian/Ubuntu (with or without Dotdeb), Centos/Redhat/Scientific/Fedora.
+Tested on:
+
+* Ubuntu 12.04
+* CentOS 6.3
+* Debian 6.0 (dotdeb - PHP 5.4)
+
+with Chef versions `10.18` and `11.4`. Assumed to work on other Debian and RedHat-based distros as well.
+
+> NOTE: This cookbook doesn't support Ubuntu 10.04 and CentOS 5.x (or earlier)
 
 # Requirements
 
-There are no cookbooks dependency 
+Includes the `yum::epel` recipe on RedHat-based distros, but otherwise has no external dependencies
 
 # Recipes
 
@@ -72,9 +80,11 @@ This will run `composer install --dev` in `/path/to/my/project` directory
 
 ## Php-fpm
 
+Used to create a new php-fpm pool
 
 ### Actions
 
+* create
 * remove
 
 ### Attributes
