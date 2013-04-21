@@ -24,8 +24,10 @@ recipe           "jolicode-php::ext-twig", "PHP Twig extension"
 recipe           "jolicode-php::ext-xdebug", "PHP XDebug extension"
 recipe           "jolicode-php::ext-zmq", "PHP Zmq extension"
 
-%w{ debian ubuntu centos fedora redhat scientific }.each do |os|
-  supports os
-end
+supports "ubuntu", ">= 12.04"
+supports "debian", ">= 6.0"
+supports "centos", ">= 6.0"
+supports "redhat", ">= 6.0"
+supports "scientific", ">= 6.0"
 
 depends "yum"
