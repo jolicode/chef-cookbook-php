@@ -17,6 +17,7 @@ when "debian"
 
   if node['jolicode-php']['dotdeb']
     node.default['jolicode-php']['real_conf_dir'] = '/etc/php5/mods-available'
+    node.default['jolicode-php']['ext_dir'] = '/usr/lib/php5/20100525+lfs'
   end
 else
   node.default['jolicode-php']['conf_dir']      = '/etc/php5/cli'
