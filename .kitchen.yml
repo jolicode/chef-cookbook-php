@@ -20,6 +20,21 @@ platforms:
       memory: 1024
   run_list:
   - recipe[apt]
+- name: debian-6.0-chef11-dotdeb
+  driver_config:
+    box: vagrantboxes-debian-6.0
+    box_url: http://dl.dropbox.com/u/40989391/vagrant-boxes/debian-squeeze-i386.box
+    require_chef_omnibus: 11.4.0
+    customize:
+      cpus: 2
+      memory: 1024
+  attributes:
+    jolicode-php:
+      dotdeb: true
+  run_list:
+  - recipe[apt]
+  - recipe[dotdeb::default]
+  - recipe[dotdeb::php54]
 - name: centos-6.3-chef11
   driver_config:
     box: opscode-centos-6.3
