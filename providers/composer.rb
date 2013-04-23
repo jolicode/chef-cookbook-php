@@ -23,8 +23,10 @@ action :create_project do
     raise ArgumentError, "You must provide a package option to composer resource with create_project action"
   end
   
-  execute "composer create-project" do
-    command "composer create-project #{new_resource.package} #{new_resource.directory} #{new_resource.version} #{new_resource.options}"
-    cwd new_resource.cwd
+  if !Dir.exists(new_resource.directory) || (Dir.entries(new_resource.directory) - %w{ . .. }).empty?
+    execute "composer create-project" do
+      command "composer create-project #{new_resource.package} #{new_resource.directory} #{new_resource.version} #{new_resource.options}"
+      cwd new_resource.cwd
+    end
   end
 end
