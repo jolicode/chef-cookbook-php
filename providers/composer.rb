@@ -5,6 +5,7 @@ action :install do
     action :run
     user new_resource.user
     group new_resource.group
+    environment new_resource.env_vars
   end
 end
 
@@ -15,6 +16,7 @@ action :update do
     action :run
     user new_resource.user
     group new_resource.group
+    environment new_resource.env_vars
   end
 end
 
@@ -23,10 +25,9 @@ action :create_project do
     raise ArgumentError, "You must provide a package option to composer resource with create_project action"
   end
   
-  if !Dir.exists(new_resource.directory) || (Dir.entries(new_resource.directory) - %w{ . .. }).empty?
-    execute "composer create-project" do
-      command "composer create-project #{new_resource.package} #{new_resource.directory} #{new_resource.version} #{new_resource.options}"
-      cwd new_resource.cwd
-    end
+  execute "composer create-project" do
+    command "composer create-project #{new_resource.package} #{new_resource.directory} #{new_resource.version} #{new_resource.options}"
+    cwd new_resource.cwd
+    environment new_resource.env_vars
   end
 end
