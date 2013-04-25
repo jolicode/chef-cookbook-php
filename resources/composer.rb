@@ -9,3 +9,4 @@ attribute :package, :kind_of => String
 attribute :options, :kind_of => String, :default => ''
 attribute :version, :kind_of => String, :default => "-sstable"
 attribute :directory, :kind_of => String, :default => ""
+attribute :env_vars, :kind_of => Hash, :default => {}
