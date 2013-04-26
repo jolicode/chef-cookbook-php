@@ -6,6 +6,7 @@ action :create do
 
   template "#{node['jolicode-php']['fpm_pool_dir']}/#{new_resource.name}.conf" do
     source "fpm-pool.conf.erb"
+    cookbook "jolicode-php"
     owner "root"
     group "root"
     mode "0644"
