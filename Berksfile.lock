@@ -1,4 +1,3 @@
-cookbook 'jolicode-php', :path => '/Users/adamb/Sites/jolicode-php'
 cookbook 'apt', :locked_version => '1.9.2'
 cookbook 'dotdeb', :git => 'git://github.com/homemade/chef-dotdeb.git', :ref => 'a3633b25f1f011da73cc510d9516c09ad0277497'
 cookbook 'minitest-handler', :locked_version => '0.1.7'
