@@ -8,4 +8,7 @@ pm.max_children         = <%= @config['max_children'] %>
 pm.start_servers        = <%= @config['start_servers'] %>
 pm.min_spare_servers    = <%= @config['min_spare_servers'] %>
 pm.max_spare_servers    = <%= @config['max_spare_servers'] %>
-chdir                   = /
+chdir                   = <%= @config['set_chdir'] %>
+<% unless @config['set_chroot'].empty? %>
+chroot                  = <%= @config['set_chroot'] %>
+<% end %>

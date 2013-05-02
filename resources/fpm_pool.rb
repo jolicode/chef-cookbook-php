@@ -9,3 +9,5 @@ attribute :max_children, :kind_of => Integer, :default => 5
 attribute :start_servers, :kind_of => Integer, :default => 2
 attribute :min_spare_servers, :kind_of => Integer, :default => 1
 attribute :max_spare_servers, :kind_of => Integer, :default => 3
+attribute :set_chdir, :kind_of => String, :default => '/'
+attribute :set_chroot, :kind_of => String, :default => ''

@@ -19,7 +19,9 @@ action :create do
         'max_children' => new_resource.max_children,
         'start_servers' => new_resource.start_servers,
         'min_spare_servers' => new_resource.min_spare_servers,
-        'max_spare_servers' => new_resource.max_spare_servers
+        'max_spare_servers' => new_resource.max_spare_servers,
+        'set_chdir' => new_resource.set_chdir,
+        'set_chroot' => new_resource.set_chroot
       }
     })
 
