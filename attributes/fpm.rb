@@ -16,6 +16,10 @@ default['jolicode-php']['fpm']['enable_default_pool'] = true
 
 #Php ini attributes
 default['jolicode-php']['fpm']['config']['pool_dir'] = node['jolicode-php']['fpm_pool_dir']
+default['jolicode-php']['fpm']['config']['error_log']               = "/var/log/php5-fpm.log"
+default['jolicode-php']['fpm']['config']['syslog_facility']         = "daemon"
+default['jolicode-php']['fpm']['config']['syslog_ident']            = "php-fpm"
+default['jolicode-php']['fpm']['config']['log_level']               = "notice"
 default['jolicode-php']['fpm']['php-config']['date.timezone']       = "Europe/Paris"
 default['jolicode-php']['fpm']['php-config']['max_execution_time']  = "-1"
 default['jolicode-php']['fpm']['php-config']['memory_limit']        = "-1"
