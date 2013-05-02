@@ -96,6 +96,8 @@ Used to create a new php-fpm pool
 * start_servers (defaults to 2)
 * min_spare_servers (defaults to 1)
 * max_spare_servers (defaults to 3)
+* set_chdir : The "chdir" setting in the config file (defaults to "/")
+* set_chroot : The "chroot" setting in the config file - leave blank to not use chroot (defaults to "")
 
 ### Examples
 
