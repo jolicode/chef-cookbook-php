@@ -51,6 +51,9 @@ ignore_repeated_source     = Off
 report_memleaks            = On
 track_errors               = Off
 html_errors                = <%= @config['html_errors'] %>
+<% unless @config['error_log'].empty? %>
+error_log                  = <%= @config['error_log'] %>
+<% end %>
 
 ;;;;;;;;;;;;;;;;;
 ; Data Handling ;
