@@ -12,6 +12,8 @@ else
   default['jolicode-php']['fpm_pool_dir']  = "/etc/php5/fpm/pool.d"
 end
 
+default['jolicode-php']['fpm']['enable_default_pool'] = true
+
 #Php ini attributes
 default['jolicode-php']['fpm']['config']['pool_dir'] = node['jolicode-php']['fpm_pool_dir']
 default['jolicode-php']['fpm']['php-config']['date.timezone']       = "Europe/Paris"
