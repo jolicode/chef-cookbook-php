@@ -26,9 +26,7 @@ template "#{node['jolicode-php']['fpm_dir']}/php-fpm.conf" do
   group "root"
   mode "0644"
   variables({
-    :config => {
-      'pool_dir' => node['jolicode-php']['fpm_pool_dir']
-    }
+    'config' => node['jolicode-php']['fpm']['config']
   })
 end
 
