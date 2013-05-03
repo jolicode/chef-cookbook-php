@@ -7,4 +7,5 @@ default['jolicode-php']['config']['display_errors']      = "Off"
 default['jolicode-php']['config']['upload_max_filesize'] = "2M"
 default['jolicode-php']['config']['post_max_size']       = "8M"
 default['jolicode-php']['config']['error_log']           = ""
-default['jolicode-php']['config']['expose_php']           = "Off"
+default['jolicode-php']['config']['expose_php']          = "Off"
+default['jolicode-php']['config']['cgi_fix_pathinfo']    = 0

@@ -76,9 +76,10 @@ default_mimetype          = "text/html"
 ; Paths and Directories ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-doc_root     =
-user_dir     =
-enable_dl    = Off
+doc_root          =
+user_dir          =
+enable_dl         = Off
+cgi.fix_pathinfo  = <%= @config['cgi_fix_pathinfo'] %>
 
 ;;;;;;;;;;;;;;;;
 ; File Uploads ;
