@@ -3,7 +3,7 @@
 # Cookbook Name:: ext-zmq
 #
 pkgs = case node["platform_family"]
-       when "rhel", "fedora" then [ 'php-devel', 'pkg-config' ]
+       when "rhel", "fedora" then [ 'php-devel', 'pkgconfig' ]
        when "debian" then [ 'php5-dev', 'pkg-config' ]
        else [ 'php5-dev', 'pkg-config' ] # untested, so might be wrong
        end
