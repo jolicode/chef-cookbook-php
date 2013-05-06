@@ -17,7 +17,11 @@ jolicode_php_composer "create twig project" do
   package     "twig/twig"
   version     node['jolicode-php']['twig']['version']
 
-  only_if { node['jolicode-php']['twig']['download'] }
+  only_if do
+    node['jolicode-php']['twig']['download'] \
+    && ! File.exists?("#{node['jolicode-php']['twig']['source_dir']}/twig") \
+    && ! File.exists?("#{node['jolicode-php']['ext_conf_dir']}/twig.ini")
+  end
 end
 
 bash "Compile twig extension" do

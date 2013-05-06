@@ -31,3 +31,4 @@ supports "redhat", ">= 6.0"
 supports "scientific", ">= 6.0"
 
 depends "yum"
+depends "build-essential"
