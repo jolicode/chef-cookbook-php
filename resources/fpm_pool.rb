@@ -2,8 +2,8 @@ actions :create, :remove
 
 default_action :create
 
-attribute :user, :kind_of => String, :default => "www-data"
-attribute :group, :kind_of => String, :default => "www-data"
+attribute :user, :kind_of => String, :required => true
+attribute :group, :kind_of => String, :required => true
 attribute :listen, :kind_of => String, :default => ""
 attribute :process_manager, :kind_of => String, :default => 'dynamic'
 attribute :max_children, :kind_of => Integer, :default => 5

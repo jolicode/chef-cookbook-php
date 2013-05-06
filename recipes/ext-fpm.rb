@@ -45,7 +45,20 @@ else
 end
 
 # default pool
-jolicode_php_fpm_pool "www" do
-  action :create
-  only_if { node['jolicode-php']['fpm']['enable_default_pool'] }
+if node['jolicode-php']['fpm']['enable_default_pool']
+
+  group node['jolicode-php']['fpm']['default_group'] do
+    gid node['jolicode-php']['fpm']['default_gid']
+  end
+
+  user node['jolicode-php']['fpm']['default_user'] do
+    uid node['jolicode-php']['fpm']['default_uid']
+    gid node['jolicode-php']['fpm']['default_gid']
+  end
+
+  jolicode_php_fpm_pool "www" do
+    user node['jolicode-php']['fpm']['default_user']
+    group node['jolicode-php']['fpm']['default_group']
+    action :create
+  end
 end

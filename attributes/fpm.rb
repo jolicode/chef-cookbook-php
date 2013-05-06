@@ -14,6 +14,14 @@ end
 
 default['jolicode-php']['fpm']['enable_default_pool'] = true
 
+
+# These will only be created if the default host is enabled
+default['jolicode-php']['fpm']['default_user'] = 'php-app'
+default['jolicode-php']['fpm']['default_uid'] = 3800
+default['jolicode-php']['fpm']['default_group'] = 'php-app'
+default['jolicode-php']['fpm']['default_gid'] = 3800
+
+
 #Php ini attributes
 default['jolicode-php']['fpm']['config']['pool_dir'] = node['jolicode-php']['fpm_pool_dir']
 default['jolicode-php']['fpm']['config']['error_log']               = "/var/log/php5-fpm.log"
