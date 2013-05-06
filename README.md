@@ -89,8 +89,8 @@ Used to create a new php-fpm pool
 
 ### Attributes
 
-* user : The use to run the workers under (defaults to "www-data")
-* group : The group to run the workers under (defaults to "www-data")
+* user : The user to run the workers under (required)
+* group : The group to run the workers under (required)
 * listen : The IP:port binding or the socket to set up for this pool (defaults to "/var/run/php5-fpm-{application_name}.sock")
 * process_manager (defaults to 'dynamic')
 * max_children (defaults to 5)
