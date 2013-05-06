@@ -41,8 +41,7 @@ template "#{node['jolicode-php']['fpm_dir']}/php.ini" do
 end
 
 # default pool
-if node['jolicode-php']['fpm']['enable_default_pool']
-  jolicode_php_fpm_pool "www" do
-    action :create
-  end
+jolicode_php_fpm_pool "www" do
+  action :create
+  only_if { node['jolicode-php']['fpm']['enable_default_pool'] }
 end
