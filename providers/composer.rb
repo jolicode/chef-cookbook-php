@@ -5,6 +5,7 @@ action :install do
     action :run
     user new_resource.user
     group new_resource.group
+    environment new_resource.env_vars
   end
 
   new_resource.updated_by_last_action(true)
@@ -17,6 +18,7 @@ action :update do
     action :run
     user new_resource.user
     group new_resource.group
+    environment new_resource.env_vars
   end
 
   new_resource.updated_by_last_action(true)
@@ -30,6 +32,7 @@ action :create_project do
   execute "composer create-project" do
     command "composer create-project #{new_resource.package} #{new_resource.directory} #{new_resource.version} #{new_resource.options}"
     cwd new_resource.cwd
+    environment new_resource.env_vars
   end
 
   new_resource.updated_by_last_action(true)
