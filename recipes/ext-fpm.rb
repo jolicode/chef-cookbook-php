@@ -30,14 +30,18 @@ template "#{node['jolicode-php']['fpm_dir']}/php-fpm.conf" do
   })
 end
 
-template "#{node['jolicode-php']['fpm_dir']}/php.ini" do
-  source "php.ini.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-  variables({
-    :config => node['jolicode-php']['fpm']['php-config']
-  })
+if node['jolicode-php']['fpm_dir'] != node['jolicode-php']['conf_dir']
+  template "#{node['jolicode-php']['fpm_dir']}/php.ini" do
+    source "php.ini.erb"
+    owner "root"
+    group "root"
+    mode "0644"
+    variables({
+      :config => node['jolicode-php']['fpm']['php-config']
+    })
+  end
+else
+  Chef::Log.warn "This platform only supports a single php.ini file - can't create a separate one for php-fpm"
 end
 
 # default pool
