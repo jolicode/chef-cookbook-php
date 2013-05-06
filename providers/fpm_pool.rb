@@ -16,10 +16,13 @@ action :create do
         'user'   => new_resource.user,
         'group'  => new_resource.group,
         'listen' => listen,
+        'process_manager' => new_resource.process_manager,
         'max_children' => new_resource.max_children,
         'start_servers' => new_resource.start_servers,
         'min_spare_servers' => new_resource.min_spare_servers,
         'max_spare_servers' => new_resource.max_spare_servers,
+        'max_requests' => new_resource.max_requests,
+        'status_path' => new_resource.status_path,
         'set_chdir' => new_resource.set_chdir,
         'set_chroot' => new_resource.set_chroot
       }

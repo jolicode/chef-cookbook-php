@@ -92,10 +92,13 @@ Used to create a new php-fpm pool
 * user : The use to run the workers under (defaults to "www-data")
 * group : The group to run the workers under (defaults to "www-data")
 * listen : The IP:port binding or the socket to set up for this pool (defaults to "/var/run/php5-fpm-{application_name}.sock")
+* process_manager (defaults to 'dynamic')
 * max_children (defaults to 5)
 * start_servers (defaults to 2)
 * min_spare_servers (defaults to 1)
 * max_spare_servers (defaults to 3)
+* max_requests (defaults to 10000)
+* status_path : The URI for the status page of this pool. Leave blank to disable the status page (defaults to "")
 * set_chdir : The "chdir" setting in the config file (defaults to "/")
 * set_chroot : The "chroot" setting in the config file - leave blank to not use chroot (defaults to "")
 
