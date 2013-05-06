@@ -6,4 +6,5 @@ description      "Used to test the jolicode-php cookbook"
 version          "1.0.0"
 
 depends "jolicode-php"
+depends "zeromq"
 depends "nginx", "~> 1.6.0"
