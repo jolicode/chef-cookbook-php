@@ -3,3 +3,5 @@
 metadata.json
 vendor.kitchen/
 *.tar.gz
+.project
+
