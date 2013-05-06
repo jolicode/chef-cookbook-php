@@ -1,0 +1,64 @@
+---
+driver_plugin: vagrant
+platforms:
+- name: ubuntu-12.04-chef11
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box
+    require_chef_omnibus: 11.4.0
+    customize:
+      cpus: 2
+      memory: 1024
+  run_list:
+  - recipe[apt]
+- name: ubuntu-12.04-chef10
+  driver_config:
+    box: opscode-ubuntu-12.04-chef10
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-10.18.2.box
+    customize:
+      cpus: 2
+      memory: 1024
+  run_list:
+  - recipe[apt]
+- name: debian-6.0-chef11-dotdeb
+  driver_config:
+    box: opscode-debian-6
+    box_url: http://opscode-vm.s3.amazonaws.com/vagrant/opscode_debian-6.0.7_chef-11.2.0.box
+    require_chef_omnibus: 11.4.0
+    customize:
+      cpus: 2
+      memory: 1024
+  attributes:
+    jolicode-php:
+      dotdeb: true
+  run_list:
+  - recipe[apt]
+  - recipe[dotdeb::default]
+  - recipe[dotdeb::php54]
+- name: centos-6.3-chef11
+  driver_config:
+    box: opscode-centos-6.3
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.3_chef-11.2.0.box
+    require_chef_omnibus: 11.4.0
+    customize:
+      cpus: 2
+      memory: 1024
+suites:
+- name: default
+  run_list:
+    - recipe[jolicode-php_test::default]
+    - recipe[jolicode-php_test::ext-apc]
+    - recipe[jolicode-php_test::ext-curl]
+    - recipe[jolicode-php_test::ext-dom]
+    - recipe[jolicode-php_test::ext-fpm]
+    - recipe[jolicode-php_test::ext-gd]
+    - recipe[jolicode-php_test::ext-imagick]
+    - recipe[jolicode-php_test::ext-intl]
+    - recipe[jolicode-php_test::ext-mbstring]
+    - recipe[jolicode-php_test::ext-mcrypt]
+    - recipe[jolicode-php_test::ext-mysql]
+    - recipe[jolicode-php_test::ext-pdo]
+    - recipe[jolicode-php_test::ext-posix]
+    - recipe[jolicode-php_test::ext-twig]
+    - recipe[jolicode-php_test::ext-xdebug]
+    - recipe[minitest-handler]

@@ -27,7 +27,7 @@ disable_classes                  =
 ; Miscellaneous ;
 ;;;;;;;;;;;;;;;;;
 
-expose_php = On
+expose_php = <%= @config['expose_php'] %>
 
 ;;;;;;;;;;;;;;;;;;;
 ; Resource Limits ;
@@ -51,6 +51,9 @@ ignore_repeated_source     = Off
 report_memleaks            = On
 track_errors               = Off
 html_errors                = <%= @config['html_errors'] %>
+<% unless @config['error_log'].empty? %>
+error_log                  = <%= @config['error_log'] %>
+<% end %>
 
 ;;;;;;;;;;;;;;;;;
 ; Data Handling ;
@@ -73,9 +76,10 @@ default_mimetype          = "text/html"
 ; Paths and Directories ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-doc_root     =
-user_dir     =
-enable_dl    = Off
+doc_root          =
+user_dir          =
+enable_dl         = Off
+cgi.fix_pathinfo  = <%= @config['cgi_fix_pathinfo'] %>
 
 ;;;;;;;;;;;;;;;;
 ; File Uploads ;

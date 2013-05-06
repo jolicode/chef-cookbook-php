@@ -1,0 +1,15 @@
+server {
+    listen  127.0.0.1:<%= @status_port %>;
+
+    access_log off;
+    error_log off;
+
+    location /status {
+        fastcgi_pass unix:/var/run/php5-fpm-<%= @app_name %>.sock;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+        fastcgi_index index.php;
+        allow 127.0.0.1;
+        deny all;
+    }
+}

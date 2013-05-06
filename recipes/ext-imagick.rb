@@ -2,19 +2,10 @@
 # Author::  Joel Wurtz (<jwurtz@jolicode.com>)
 # Cookbook Name:: php
 #
-pkgs = value_for_platform(
-  %w(centos redhat scientific fedora) => {
-    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(php53-imagick),
-    'default' => %w(php-imagick)
-  },
-  [ "debian", "ubuntu" ] => {
-    "default" => %w{ php5-imagick }
-  },
-  "default" => %w{ php5-imagick }
-)
+pkg = case node["platform_family"]
+      when "rhel", "fedora" then 'php-pecl-imagick'
+      when "debian" then 'php5-imagick'
+      else 'php5-imagick' # untested, so might be wrong
+      end
 
-pkgs.each do |pkg|
-  package pkg do
-    action :install
-  end
-end
+package pkg

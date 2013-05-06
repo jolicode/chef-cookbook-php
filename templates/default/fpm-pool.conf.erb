@@ -3,9 +3,16 @@
 user                    = <%= @config['user'] %>
 group                   = <%= @config['group'] %>
 listen                  = <%= @config['listen'] %>
-pm                      = dynamic
-pm.max_children         = 5
-pm.start_servers        = 2
-pm.min_spare_servers    = 1
-pm.max_spare_servers    = 3
-chdir                   = /
+pm                      = <%= @config['process_manager'] %>
+pm.max_children         = <%= @config['max_children'] %>
+pm.start_servers        = <%= @config['start_servers'] %>
+pm.min_spare_servers    = <%= @config['min_spare_servers'] %>
+pm.max_spare_servers    = <%= @config['max_spare_servers'] %>
+pm.max_requests         = <%= @config['max_requests'] %>
+<% unless @config['status_path'].empty? %>
+pm.status_path          = <%= @config['status_path'] %>
+<% end %>
+chdir                   = <%= @config['set_chdir'] %>
+<% unless @config['set_chroot'].empty? %>
+chroot                  = <%= @config['set_chroot'] %>
+<% end %>

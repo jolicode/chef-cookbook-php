@@ -6,21 +6,18 @@ if !node['jolicode-php']['dotdeb'] and platform?("debian")
   raise "In order to install php5-fpm on debian you need dotdeb"
 end
 
-pkgs = value_for_platform(
-  %w(centos redhat scientific fedora) => {
-    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(php53-fpm),
-    'default' => %w(php-fpm)
-  },
-  [ "debian", "ubuntu" ] => {
-    "default" => %w{ php5-fpm }
-  },
-  "default" => %w{ php5-fpm }
-)
+fpm_package_name = case node["platform_family"]
+                   when "rhel", "fedora" then 'php-fpm'
+                   when "debian" then 'php5-fpm'
+                   else 'php5-fpm' # untested, so might be wrong
+                   end
 
-pkgs.each do |pkg|
-  package pkg do
-    action :install
-  end
+package fpm_package_name
+
+# This way we can refer to this service irrespective of the platform
+service "php-fpm" do
+  service_name fpm_package_name
+  action [:enable, :start]
 end
 
 template "#{node['jolicode-php']['fpm_dir']}/php-fpm.conf" do
@@ -29,23 +26,39 @@ template "#{node['jolicode-php']['fpm_dir']}/php-fpm.conf" do
   group "root"
   mode "0644"
   variables({
-    :config => {
-      'pool_dir' => node['jolicode-php']['fpm_pool_dir']
-    }
+    'config' => node['jolicode-php']['fpm']['config']
   })
 end
 
-template "#{node['jolicode-php']['fpm_dir']}/php.ini" do
-  source "php.ini.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-  variables({
-    :config => node['jolicode-php']['fpm']['php-config']
-  })
+if node['jolicode-php']['fpm_dir'] != node['jolicode-php']['conf_dir']
+  template "#{node['jolicode-php']['fpm_dir']}/php.ini" do
+    source "php.ini.erb"
+    owner "root"
+    group "root"
+    mode "0644"
+    variables({
+      :config => node['jolicode-php']['fpm']['php-config']
+    })
+  end
+else
+  Chef::Log.warn "This platform only supports a single php.ini file - can't create a separate one for php-fpm"
 end
 
 # default pool
-php_fpm_pool "www" do
-  action :run
+if node['jolicode-php']['fpm']['enable_default_pool']
+
+  group node['jolicode-php']['fpm']['default_group'] do
+    gid node['jolicode-php']['fpm']['default_gid']
+  end
+
+  user node['jolicode-php']['fpm']['default_user'] do
+    uid node['jolicode-php']['fpm']['default_uid']
+    gid node['jolicode-php']['fpm']['default_gid']
+  end
+
+  jolicode_php_fpm_pool "www" do
+    user node['jolicode-php']['fpm']['default_user']
+    group node['jolicode-php']['fpm']['default_group']
+    action :create
+  end
 end
