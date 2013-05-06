@@ -18,7 +18,6 @@ with Chef versions `10.18` and `11.4`. Assumed to work on other Debian and RedHa
 
 Includes the `yum::epel` recipe on RedHat-based distros, and the `build-essentials` cookbook on all platforms.
 
-
 # Recipes
 
 *  php
@@ -34,6 +33,7 @@ Includes the `yum::epel` recipe on RedHat-based distros, and the `build-essentia
 *  ext-mcrypt
 *  ext-mysql
 *  ext-pdo
+*  ext-pgsql
 *  ext-posix
 *  ext-twig
 *  ext-xdebug
@@ -53,16 +53,16 @@ Name | Description
 
 ## Composer
 
-Composer ressource declare 3 actions : `install`, `update` and `create_project`
+Composer resource declare 3 actions : `install`, `update` and `create_project`
 
 ### Options
 
 * cwd : Where to run composer in
 * user: Which user run the composer command
 * group : Which group run the composer command
-* package : For use with create_project to specifiy package to install
+* package : For use with create_project to specify package to install
 * options : To add extra values in composer command
-* version : For use with create_project to set wich version of package to install
+* version : For use with create_project to set which version of package to install
 * directory : For use with create_project to set path of new package installed
 
 ###Â Examples
@@ -119,3 +119,10 @@ and sets it up to listen on the socket under `/var/run/php5-fpm-my_application.s
 # Dotdeb
 
 All recipes are compatible with dotdeb repository. You need to set jolicode-php['dotdeb'] attribute to true when using dotdeb.
+
+#ÊTests
+
+This cookbook use https://github.com/hipsnip-cookbooks/cookbook-development for test which includes 
+
+* [Strainer](https://github.com/customink/strainer) for Linting, Syntax check and Unit test
+* [Test-kitchen](https://github.com/opscode/test-kitchen) for integration test
