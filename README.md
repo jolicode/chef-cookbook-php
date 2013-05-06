@@ -16,7 +16,8 @@ with Chef versions `10.18` and `11.4`. Assumed to work on other Debian and RedHa
 
 # Requirements
 
-Includes the `yum::epel` recipe on RedHat-based distros, but otherwise has no external dependencies
+Includes the `yum::epel` recipe on RedHat-based distros, and the `build-essentials` cookbook on all platforms.
+
 
 # Recipes
 
