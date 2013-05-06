@@ -41,7 +41,7 @@ Includes the `yum::epel` recipe on RedHat-based distros, and the `build-essentia
 *  ext-xdebug
 *  ext-zmq
 
-# Attributes
+# Attributes
 
 Name | Description
 --- | ---
@@ -67,7 +67,7 @@ Composer resource declare 3 actions : `install`, `update` and `create_project`
 * version : For use with create_project to set which version of package to install
 * directory : For use with create_project to set path of new package installed
 
-### Examples
+### Examples
 
 ```ruby
 jolicode_php_composer "Install my dependencies" do
@@ -122,7 +122,7 @@ and sets it up to listen on the socket under `/var/run/php5-fpm-my_application.s
 
 All recipes are compatible with dotdeb repository. You need to set jolicode-php['dotdeb'] attribute to true when using dotdeb.
 
-#�Tests
+# Tests
 
 This cookbook use https://github.com/hipsnip-cookbooks/cookbook-development for test which includes 
 
