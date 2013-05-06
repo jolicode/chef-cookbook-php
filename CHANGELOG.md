@@ -15,6 +15,7 @@ This file is used to list changes made in each version of jolicode-php.
 * Add new config options to php.ini and php.ini fpm config
 * Add env attribute to composer LWRP
 * Fix typo and somes bugs
+* Add ext-pgsql recipe
 
 ## 1.0.0:
 
