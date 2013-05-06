@@ -22,8 +22,8 @@ platforms:
   - recipe[apt]
 - name: debian-6.0-chef11-dotdeb
   driver_config:
-    box: vagrantboxes-debian-6.0
-    box_url: http://dl.dropbox.com/u/40989391/vagrant-boxes/debian-squeeze-i386.box
+    box: opscode-debian-6
+    box_url: http://opscode-vm.s3.amazonaws.com/vagrant/opscode_debian-6.0.7_chef-11.2.0.box
     require_chef_omnibus: 11.4.0
     customize:
       cpus: 2
