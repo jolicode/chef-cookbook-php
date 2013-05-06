@@ -4,7 +4,7 @@ maintainer_email "jwurtz@jolicode.com"
 license          "Apache 2.0"
 description      "Installs/Configures Jolicode Chef Cookbook for PHP"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0.0"
+version          "1.1.0"
 recipe           "jolicode-php", "Alias for jolicode-php::php"
 recipe           "jolicode-php::php", "Php client (no web server)"
 recipe           "jolicode-php::composer", "Composer package manager"
