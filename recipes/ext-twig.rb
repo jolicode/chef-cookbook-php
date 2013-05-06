@@ -2,30 +2,25 @@
 # Author::  Joel Wurtz (<jwurtz@jolicode.com>)
 # Cookbook Name:: php
 #
-pkgs = value_for_platform(
-  %w(centos redhat scientific fedora) => {
-    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(php53-dev),
-    'default' => %w(php-dev)
-  },
-  [ "debian", "ubuntu" ] => {
-    "default" => %w{ php5-dev }
-  },
-  "default" => %w{ php5-dev }
-)
+pkg = case node["platform_family"]
+      when "rhel", "fedora" then 'php-devel'
+      when "debian" then 'php5-dev'
+      else 'php5-dev' # untested, so might be wrong
+      end
 
-pkgs.each do |pkg|
-  package pkg do
-    action :install
-  end
-end
+package pkg
 
-if node['jolicode-php']['twig']['download']
-  jolicode_chef_cookbook_php_composer "create twig project" do
-    action      :create_project
-    cwd         node['jolicode-php']['twig']['source_dir']
-    directory   "twig"
-    package     "twig/twig"
-    version     node['jolicode-php']['twig']['version']
+jolicode_php_composer "create twig project" do
+  action      :create_project
+  cwd         node['jolicode-php']['twig']['source_dir']
+  directory   "twig"
+  package     "twig/twig"
+  version     node['jolicode-php']['twig']['version']
+
+  only_if do
+    node['jolicode-php']['twig']['download'] \
+    && ! File.exists?("#{node['jolicode-php']['twig']['source_dir']}/twig") \
+    && ! File.exists?("#{node['jolicode-php']['ext_conf_dir']}/twig.ini")
   end
 end
 
@@ -49,9 +44,9 @@ template "#{node['jolicode-php']['ext_conf_dir']}/twig.ini" do
   mode "0644"
 end
 
-if node['jolicode-php']['twig']['download']
-  directory "#{node['jolicode-php']['twig']['source_dir']}/twig" do
-    action :delete
-    recursive true
-  end
+directory "#{node['jolicode-php']['twig']['source_dir']}/twig" do
+  action :delete
+  recursive true
+
+  only_if { node['jolicode-php']['twig']['download'] }
 end

@@ -2,16 +2,11 @@
 # Author::  Joel Wurtz (<jwurtz@jolicode.com>)
 # Cookbook Name:: ext-zmq
 #
-pkgs = value_for_platform(
-  %w(centos redhat scientific fedora) => {
-    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(php53-dev pkg-config),
-    'default' => %w(php-dev pkg-config)
-  },
-  [ "debian", "ubuntu" ] => {
-    "default" => %w{ php5-dev pkg-config }
-  },
-  "default" => %w{ php5-dev pkg-config }
-)
+pkgs = case node["platform_family"]
+       when "rhel", "fedora" then [ 'php-devel', 'pkg-config' ]
+       when "debian" then [ 'php5-dev', 'pkg-config' ]
+       else [ 'php5-dev', 'pkg-config' ] # untested, so might be wrong
+       end
 
 pkgs.each do |pkg|
   package pkg do
