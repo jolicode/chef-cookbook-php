@@ -1,6 +1,8 @@
-# Description
+# Jolicode-php
 
-Install and configure php, instead of the offcial one, this cookbook does not depend on apache and will not use or install pear.
+A cookbook to install and configure php. Instead of the offcial one, this cookbook does not depend on apache and will not use or install pear.
+
+[![Build Status](https://travis-ci.org/jolicode/chef-cookbook-php.png)](https://travis-ci.org/jolicode/chef-cookbook-php)
 
 # Platform
 
