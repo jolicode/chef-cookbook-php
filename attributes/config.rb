@@ -9,3 +9,4 @@ default['jolicode-php']['config']['post_max_size']       = "8M"
 default['jolicode-php']['config']['error_log']           = ""
 default['jolicode-php']['config']['expose_php']          = "Off"
 default['jolicode-php']['config']['cgi_fix_pathinfo']    = 0
+default['jolicode-php']['config']['custom_directives']   = []
