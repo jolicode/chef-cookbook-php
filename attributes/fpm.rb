@@ -38,3 +38,4 @@ default['jolicode-php']['fpm']['php-config']['post_max_size']       = "8M"
 default['jolicode-php']['fpm']['php-config']['error_log']           = ""
 default['jolicode-php']['fpm']['php-config']['expose_php']          = "Off"
 default['jolicode-php']['fpm']['php-config']['cgi_fix_pathinfo']    = 0
+default['jolicode-php']['fpm']['php-config']['custom_directives']   = []
