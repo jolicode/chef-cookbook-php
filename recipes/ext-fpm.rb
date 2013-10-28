@@ -39,6 +39,7 @@ if node['jolicode-php']['fpm_dir'] != node['jolicode-php']['conf_dir']
     variables({
       :config => node['jolicode-php']['fpm']['php-config']
     })
+    notifies :restart, "service[php-fpm]"
   end
 else
   Chef::Log.warn "This platform only supports a single php.ini file - can't create a separate one for php-fpm"
