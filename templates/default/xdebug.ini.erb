@@ -1,1 +1,4 @@
-zend_extension      = "<%= node['jolicode-php']['ext_dir'] %>/xdebug.so"
+zend_extension = "<%= node['jolicode-php']['ext_dir'] %>/xdebug.so"
+<% node['jolicode-php']['xdebug'].each do |opt, val| -%>
+xdebug.<%= opt %> = <%= val %>
+<% end -%>
