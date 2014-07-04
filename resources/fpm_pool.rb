@@ -5,6 +5,9 @@ default_action :create
 attribute :user, :kind_of => String, :required => true
 attribute :group, :kind_of => String, :required => true
 attribute :listen, :kind_of => String, :default => ""
+attribute :listen_owner, :kind_of => String, :default => 'www-data'
+attribute :listen_group, :kind_of => String, :default => 'www-data'
+attribute :listen_mode, :kind_of => Integer, :default => 0660
 attribute :process_manager, :kind_of => String, :default => 'dynamic'
 attribute :max_children, :kind_of => Integer, :default => 5
 attribute :start_servers, :kind_of => Integer, :default => 2
