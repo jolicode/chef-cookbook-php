@@ -1,3 +1,7 @@
+# Not maintained
+
+This project is no more maintained as we are driving away from Chef and don't have anymore time for this library. If someone wants to make a maintained fork of this cookbook: add an issue and we will put the url here.
+
 # Jolicode-php
 
 A cookbook to install and configure php. Instead of the offcial one, this cookbook does not depend on apache and will not use or install pear.
