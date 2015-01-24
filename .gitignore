@@ -1,5 +1,7 @@
 .vagrant
+Vagrantfile
 .kitchen
+chefignore
 metadata.json
 vendor.kitchen/
 *.tar.gz
