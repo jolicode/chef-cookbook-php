@@ -14,7 +14,7 @@ pkgs.each do |pkg|
   end
 end
 
-template node.default['jolicode-php']['conf_dir'] + "/php.ini" do
+template "#{node.default['jolicode-php']['conf_dir']}/php.ini" do
   source "php.ini.erb"
   owner "root"
   group "root"
